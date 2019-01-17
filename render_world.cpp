@@ -68,8 +68,11 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     Hit closest_intersect = Closest_Intersection(ray);
     
     if(Closest_Intersection(ray)){
-        color = Shade_Surface(ray, intersection_point, Normal( , ), recursion_depth);
+        color = Shade_Surface(ray, intersection_point, objects->Normal( , ), recursion_depth);
     }// determine the color here
+    else{
+        //background shader???
+    }
     return color;
 }
 
