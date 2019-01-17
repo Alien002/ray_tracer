@@ -7,7 +7,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     TODO;
     //(p-c) . (p-c) - R^2 = 0;
     if(dot(ray.point(part)-sphere.center,ray.point(part)-sphere.center) - pow(sphere.radius,2) == 0){
-        
+        //FIXME
     }
     return {0,0,0};
 }
