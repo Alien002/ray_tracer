@@ -42,7 +42,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         }
         else{
             hit.dist = 0;
-            hit.object = 0;
+            hit.object = nullptr;
             hit.part = 0;
         }
     }
@@ -57,13 +57,13 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         }
         else{
             hit.dist = 0;
-            hit.object = 0;
+            hit.object = nullptr;
             hit.part = 0;
         }
     }
     else{       //det < 0
         hit.dist = 0;
-        hit.object = 0;
+        hit.object = nullptr;
         hit.part = 0;
 
         //do nothing, no hit
