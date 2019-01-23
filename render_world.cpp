@@ -55,7 +55,7 @@ void Render_World::Render_Pixel(const ivec2& pixel_index)  //
 {
     //TODO; // set up the initial view ray here
     vec3 end_point = camera.position;
-    vec3 direction = (end_point - camera.World_Position(pixel_index)).normalized();
+    vec3 direction = (camera.World_Position(pixel_index) - end_point).normalized();
     Ray ray;
     
     ray.endpoint = end_point;
@@ -93,7 +93,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     
     std::cout<<"Cast_Ray before normal called!!!!!!" <<std::endl;
 
-    vec3 normal = closest_intersect.object -> Normal(intersection_point, -1);           //seg faults here sometimes
+    vec3 normal = closest_intersect.object -> Normal(intersection_point, 0);           //seg faults here sometimes
 
     std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
