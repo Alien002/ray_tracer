@@ -9,9 +9,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     //int t = part;
     
     //std::cout<<"Sphere intersect called!!!!!!" <<std::endl;
-
-    
-    Hit hit;
+/*
     vec3 vec = ray.endpoint - this -> center;            //E - C
     vec3 u = ray.direction;
     
@@ -43,11 +41,6 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         t2 = 0;
         
         if(t1 >= small_t){
-            /*
-            hit.dist = t1;
-            hit.object = this;
-            hit.part = part;
-            */
             return{this, t1, part};
         }
         else{
@@ -57,6 +50,26 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     }
     
     return {nullptr, 0, part};
+*/
+    
+    double discriminant = pow(dot(ray.direction, ray.endpoint - center), 2) - (dot(ray.direction, ray.direction) * (dot(ray.endpoint - center, ray.endpoint - center) - pow(radius, 2)));
+    double t_1 = 0;
+    double t_2 = 0;
+    
+    if (discriminant > 0) {
+        t_1 = -dot(ray.direction, ray.endpoint - center) + sqrt(discriminant) / dot(ray.direction, ray.direction);
+        t_2 = -dot(ray.direction, ray.endpoint - center) - sqrt(discriminant) / dot(ray.direction, ray.direction);
+        
+        if (t_1 < t_2 && t_1 >= small_t) {
+            return {this, t_1, part};
+        }
+        else if (t_1 >= t_2 && t_2 >= small_t){
+            return {this, t_2, part};
+        }
+    }
+    
+    return {nullptr, t_1, part};
+
 }
 
 vec3 Sphere::Normal(const vec3& point, int part) const

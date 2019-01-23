@@ -40,11 +40,6 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
         if(temp.object && temp.dist < min_t && temp.dist >= small_t){        //if intersect & temp.dist < small_t
             closest_hit = temp;
             min_t = closest_hit.dist;
-            /*
-            closest_hit.dist = temp.dist;
-            closest_hit.object = temp.object;
-            closest_hit.part = temp.part;                       //closest obj = obj
-             */
         }
     }
     return closest_hit;
