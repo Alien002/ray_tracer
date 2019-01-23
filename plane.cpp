@@ -23,9 +23,13 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     
     if(dot(u,this -> normal) == 0){
         hit.dist = 0;
+        hit.object = 0;
+        hit.part = 0;
     }
     else {
         hit.dist = t;
+        hit.object = this;
+        hit.part = part;
     }
     
     
