@@ -73,7 +73,6 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     
     vec3 background;                                    //placeholder vector
     
-    background.fill(-1);
     
     Hit closest_intersect = Closest_Intersection(ray);
     
@@ -95,7 +94,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
 void Render_World::Initialize_Hierarchy()
 {
-    TODO; // Fill in hierarchy.entries; there should be one entry for
+    //TODO; // Fill in hierarchy.entries; there should be one entry for
     // each part of each object.
 
     hierarchy.Reorder_Entries();
