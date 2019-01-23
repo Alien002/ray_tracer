@@ -69,7 +69,7 @@ void Render_World::Render()
 // or the background color if there is no object intersection
 vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 {
-    <<std::cout"Cast_Ray called!!!!!!" <<std::endl;
+    std::cout<<"Cast_Ray called!!!!!!" <<std::endl;
     
     vec3 color;
     
