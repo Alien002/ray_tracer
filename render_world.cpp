@@ -71,7 +71,9 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 {
     vec3 color;
     
-    vec3 background;
+    vec3 background;                                    //placeholder vector
+    
+    background.fill(-1);
     
     Hit closest_intersect = Closest_Intersection(ray);
     
