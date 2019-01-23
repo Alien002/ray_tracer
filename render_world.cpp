@@ -89,7 +89,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     
     std::cout<<"Cast_Ray before normal called!!!!!!" <<std::endl;
 
-    vec3 normal = closest_intersect.object -> Normal(intersection_point, closest_intersect.part);           //seg faults here sometimes
+    vec3 normal = closest_intersect.object -> Normal(intersection_point, -1);           //seg faults here sometimes
 
     std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
