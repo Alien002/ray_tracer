@@ -23,6 +23,8 @@ Render_World::~Render_World()
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     //TODO;
+    std::cout<<"Closest_Intersection called!!!!!!" <<std::endl;
+
     int min_t = std::numeric_limits<int>::max();
     
     Hit closest_hit;
