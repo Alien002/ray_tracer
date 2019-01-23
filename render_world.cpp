@@ -23,7 +23,7 @@ Render_World::~Render_World()
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     //TODO;
-    std::cout<<"Closest_Intersection called!!!!!!" <<std::endl;
+    //std::cout<<"Closest_Intersection called!!!!!!" <<std::endl;
 
     int min_t = std::numeric_limits<int>::max();
     
@@ -34,7 +34,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     
     
     for(unsigned i = 0; i < objects.size(); ++i){                            //loop for each object
-        std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
+      //  std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
 
         Hit temp = objects.at(i)->Intersection(ray, 0);
         if(temp.object && temp.dist < min_t && temp.dist >= small_t){        //if intersect & temp.dist < small_t
