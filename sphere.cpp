@@ -17,17 +17,17 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     
     
     double a = dot(u, u);                                  //a = (E - C)(E - C)
-    double b = dot(u,vec);//2 *dot(vec, u);                           //b = 2(E - C)u
+    double b = 2 *dot(u, vec);                           //b = 2(E - C)u
     double c = dot(vec,vec) - pow(this -> radius,2);       //c = (X - C)(X - C) - r^2
     
     
-    double det = pow(b,2)-(4*a*c);
+    double det = pow(b,2)-(4 * a * c);
     double t1,t2;
     
     
     if(det > 0){
-        t1 = (-b + sqrt(det)) / (2*a);
-        t2 = (-b - sqrt(det)) / (2*a);
+        t1 = ((-b + sqrt(det)) / (2*a));
+        t2 = ((-b - sqrt(det)) / (2*a));
         
         if(t1 >= small_t && t1 < t2){                                  //t1 >= small_t registered as hit
             return{this, t1, part};
