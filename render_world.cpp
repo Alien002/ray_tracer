@@ -36,7 +36,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     for(unsigned i = 0; i < objects.size(); ++i){                            //loop for each object
       //  std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
 
-        Hit temp = objects.at(i)->Intersection(ray, 0);
+        Hit temp = objects.at(i)->Intersection(ray, -1);
         if(temp.object && temp.dist < min_t && temp.dist > small_t){        //if intersect & temp.dist < small_t
             closest_hit = temp;
             min_t = closest_hit.dist;
@@ -87,7 +87,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     
     if(closest_intersect.dist != 0){
         intersection_point = ray.Point(closest_intersect.dist);
-        normal = closest_intersect.object -> Normal(intersection_point, 0);           //seg faults here sometimes
+        normal = closest_intersect.object -> Normal(intersection_point, -1);           //seg faults here sometimes
 
       //  std::cout<<"Cast_Ray if called!!!!!!" <<std::endl;
         //std::cout<<"if before color called!!!!!!" <<std::endl;
