@@ -8,6 +8,8 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     
     //int t = part;
     
+    std::cout<<"Sphere intersect called!!!!!!" <<std::endl;
+
     
     Hit hit;
     vec3 vec = ray.endpoint - this -> center;            //E - C

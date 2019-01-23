@@ -16,8 +16,7 @@ class Shader;
 class Object;
 
 struct Hit
-{   std::cout<<"Hit called!!!!!!" <<std::endl;
-
+{
     const Object* object; // object that was intersected
     double dist; // distance along ray to intersection location
     int part; // which part was intersected (eg, for meshes)
