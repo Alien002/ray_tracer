@@ -37,7 +37,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
         std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
 
         Hit temp = objects.at(i)->Intersection(ray, 0);
-        if(temp.dist < min_t && temp.dist > small_t && temp.object){        //if intersect & temp.dist < small_t
+        if(temp.object && temp.dist < min_t && temp.dist >= small_t){        //if intersect & temp.dist < small_t
             closest_hit = temp;
             min_t = closest_hit.dist;
             /*

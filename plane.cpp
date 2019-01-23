@@ -24,7 +24,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     double t = dot(vec,this -> normal)/ dot(u,this -> normal);
     
     
-    if(dot(u,this -> normal) != 0){
+    if(dot(vec,this -> normal) != 0){
         if (t > 0){
             return {this, t, part};
         }
