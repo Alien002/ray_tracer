@@ -20,12 +20,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     
     
     if(dot(u,this -> normal) != 0){
-        if (t > 0){
-            return {this, t, part};
-        }
-        else{
-            return {nullptr, 0, part};
-        }
+        return {this, t, part};
     }
     
     return {nullptr, 0, part};
