@@ -32,6 +32,8 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     
     
     for(unsigned i = 0; i < objects.size(); ++i){                            //loop for each object
+        std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
+
         temp = objects.at(i)->Intersection(ray, -1);
         if(temp.dist < closest_hit.dist && temp.dist > small_t){        //if intersect & temp.dist < small_t
             closest_hit = temp;                                         //closest obj = obj
@@ -80,20 +82,20 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     vec3 intersection_point = ray.Point(closest_intersect.dist);
     
     
-    std::cout<<"Cast_Ray before normalcalled!!!!!!" <<std::endl;
+    std::cout<<"Cast_Ray before normal called!!!!!!" <<std::endl;
 
     vec3 normal = closest_intersect.object -> Normal(intersection_point, -1);
 
-    std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
+    //std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
     
     if(closest_intersect.dist != 0){
-        std::cout<<"Cast_Ray if called!!!!!!" <<std::endl;
+      //  std::cout<<"Cast_Ray if called!!!!!!" <<std::endl;
         color = closest_intersect.object -> material_shader -> Shade_Surface(ray, intersection_point, normal, recursion_depth);
     }// determine the color here
     else{
         //background shader
-        std::cout<<"Cast_Ray else called!!!!!!" <<std::endl;
+        //std::cout<<"Cast_Ray else called!!!!!!" <<std::endl;
         this -> background_shader -> Shade_Surface(ray, background, background, recursion_depth);
         
         //color = closest_intersect.object -> material_shader -> background_shader;
