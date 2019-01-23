@@ -49,12 +49,10 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 void Render_World::Render_Pixel(const ivec2& pixel_index)  //
 {
     //TODO; // set up the initial view ray here
-    vec3 end_point = camera.position;
-    vec3 direction = (camera.World_Position(pixel_index) - end_point).normalized();
     Ray ray;
     
-    ray.endpoint = end_point;
-    ray.direction = direction;  //sets ray direction
+    ray.endpoint = camera.position;
+    ray.direction = (camera.World_Position(pixel_index) - end_point).normalized();  //sets ray direction
     
     vec3 color=Cast_Ray(ray,1);
     camera.Set_Pixel(pixel_index,Pixel_Color(color));
