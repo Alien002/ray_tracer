@@ -44,7 +44,7 @@ vec3 Camera::World_Position(const ivec2& pixel_index)
     vec3 result;
     vec2 center = Cell_Center(pixel_index);
     
-    result = this*film_position + (horizontal_vector * center[0]) + (vertical_vector * center[1]);
+    result = this->film_position + (horizontal_vector * center[0]) + (vertical_vector * center[1]);
     
     return result;
 }

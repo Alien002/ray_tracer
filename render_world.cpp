@@ -23,9 +23,14 @@ Render_World::~Render_World()
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     //TODO;
-    int min_t = std::numeric_limits.max();
-    Hit closest_hit.dist = min_t;                                       //set closest_hit to largest value at first.
+    int min_t = std::numeric_limits<int>::max();
+    
+    Hit closest_hit;
     Hit temp;
+    
+    closest_hit.dist = min_t;                                       //set closest_hit to largest value at first.
+    
+    
     for(int i = 0; i < objects.size(); ++i){                            //loop for each object
         temp = objects.at(i)->Intersection(ray, -1);
         if(temp.dist < closest_hit.dist && temp.dist > small_t){        //if intersect & temp.dist < small_t
@@ -65,12 +70,18 @@ void Render_World::Render()
 vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 {
     vec3 color;
+    
     Hit closest_intersect = Closest_Intersection(ray);
     
-    if(Closest_Intersection(ray)){
-        color = Shade_Surface(ray, intersection_point, objects->Normal( , ), recursion_depth);
+    vec3 intersection_point = ray.Point(closest_intersect.dist);
+
+    
+    
+    if(closest_intersect.dist != 0){
+        color = closest_intersect.object -> material_shader -> Shade_Surface(ray, intersection_point, closest_intersect.object->Normal(intersection_point,-1), recursion_depth);
     }// determine the color here
     else{
+        //background_shader(0);
         //background shader???
     }
     return color;
