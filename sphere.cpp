@@ -30,14 +30,18 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         if(t1 >= small_t){                                  //t1 >= small_t registered as hit
             hit.dist = t1;
             hit.object = this;
+            hit.part = part;
 
         }
         else if(t2 >= small_t){                             //t2 registered as hit
             hit.dist = t2;
             hit.object = this;
+            hit.part = part;
         }
         else{
             hit.dist = 0;
+            hit.object = 0;
+            hit.part = 0;
         }
     }
     else if(det == 0){
