@@ -31,7 +31,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     closest_hit.dist = min_t;                                       //set closest_hit to largest value at first.
     
     
-    for(int i = 0; i < objects.size(); ++i){                            //loop for each object
+    for(unsigned i = 0; i < objects.size(); ++i){                            //loop for each object
         temp = objects.at(i)->Intersection(ray, -1);
         if(temp.dist < closest_hit.dist && temp.dist > small_t){        //if intersect & temp.dist < small_t
             closest_hit = temp;                                         //closest obj = obj
@@ -89,7 +89,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
 void Render_World::Initialize_Hierarchy()
 {
-    TODO; // Fill in hierarchy.entries; there should be one entry for
+    //TODO; // Fill in hierarchy.entries; there should be one entry for
     // each part of each object.
 
     hierarchy.Reorder_Entries();
