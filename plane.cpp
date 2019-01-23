@@ -33,7 +33,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
         }
     }
     
-    return {nullptr,0,part};
+    return {nullptr, 0, part};
 }
 
 vec3 Plane::Normal(const vec3& point, int part) const

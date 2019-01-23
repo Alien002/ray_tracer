@@ -27,8 +27,8 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 
     int min_t = std::numeric_limits<int>::max();
     
-    Hit closest_hit;
-    Hit temp;
+    Hit closest_hit = {nullptr, 0, 0};
+    //Hit temp;
     
     //closest_hit.dist = min_t;                                       //set closest_hit to largest value at first.
     
@@ -36,7 +36,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     for(unsigned i = 0; i < objects.size(); ++i){                            //loop for each object
         std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
 
-        temp = objects.at(i)->Intersection(ray, 0);
+        Hit temp = objects.at(i)->Intersection(ray, 0);
         if(temp.dist < min_t && temp.dist > small_t && temp.object){        //if intersect & temp.dist < small_t
             closest_hit = temp;
             min_t = closest_hit.dist;
@@ -98,23 +98,22 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
     
-    if(closest_intersect.object){
+    if(closest_intersect.dist != 0){
       //  std::cout<<"Cast_Ray if called!!!!!!" <<std::endl;
-        std::cout<<"if before color called!!!!!!" <<std::endl;
+        //std::cout<<"if before color called!!!!!!" <<std::endl;
 
         color = closest_intersect.object -> material_shader -> Shade_Surface(ray, intersection_point, normal, recursion_depth);
         
-        std::cout<<"if after color called!!!!!!" <<std::endl;
+        //std::cout<<"if after color called!!!!!!" <<std::endl;
 
     }// determine the color here
     else{
         //background shader
-        //std::cout<<"Cast_Ray else called!!!!!!" <<std::endl;
-        std::cout<<"else before color called!!!!!!" <<std::endl;
+        //std::cout<<"else before color called!!!!!!" <<std::endl;
 
         color = background_shader -> Shade_Surface(ray, ray.direction, ray.direction, recursion_depth);
         
-        std::cout<<"else after color called!!!!!!" <<std::endl;
+        //std::cout<<"else after color called!!!!!!" <<std::endl;
 
         //color = closest_intersect.object -> material_shader -> background_shader;
         //background shader???

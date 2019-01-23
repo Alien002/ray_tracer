@@ -72,7 +72,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         //do nothing, no hit
     }
     
-    return {nullptr, t1, part};
+    return {nullptr, 0, part};
 }
 
 vec3 Sphere::Normal(const vec3& point, int part) const
