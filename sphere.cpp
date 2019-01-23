@@ -16,12 +16,12 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     vec3 u = ray.direction;
     
     
-    double a = dot(vec,vec);                                  //a = (E - C)(E - C)
+    double a = dot(u, u);                                  //a = (E - C)(E - C)
     double b = 2 * dot(vec, u);                           //b = 2(E - C)u
     double c = dot(vec,vec) - pow(this -> radius,2);       //c = (X - C)(X - C) - r^2
     
     
-    double det = pow(b,2)-4*a*c;
+    double det = pow(b,2)-(4*a*c);
     double t1,t2;
     
     
