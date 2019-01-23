@@ -11,7 +11,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 
     
     //std::cout<<"plane intersect called!!!!!!" <<std::endl;
-/*
+
     vec3 vec = this -> x1 - ray.endpoint;            //Q-E
     vec3 u = ray.direction;
     
@@ -24,29 +24,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     }
     
     return {nullptr, 0, part};
-*/
-    
-    Hit result;
-    vec3 u = ray.direction;
-    result.part = part;
-    
-    
-    double t = dot(this->x1 - ray.endpoint, this->normal) / dot(u, this->normal);
-    
-    if (dot(u, this->normal) == 0)
-    {
-        result.dist = 0;
-        result.object = nullptr;
-        result.part = 0;
-        return {nullptr, 0 ,part};
-    }
-    else
-    {
-        result.dist = t;
-        result.object = this;
-        return{this, t, part};
-    }
-    return result;
+
 }
 
 vec3 Plane::Normal(const vec3& point, int part) const
