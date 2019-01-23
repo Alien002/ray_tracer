@@ -38,6 +38,8 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 
 vec3 Plane::Normal(const vec3& point, int part) const
 {
+    std::cout<<"Normal if called!!!!!!" <<std::endl;
+
     return normal;
 }
 
