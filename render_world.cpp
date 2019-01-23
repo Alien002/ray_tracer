@@ -30,15 +30,16 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
     Hit closest_hit;
     Hit temp;
     
-    closest_hit.dist = min_t;                                       //set closest_hit to largest value at first.
+    //closest_hit.dist = min_t;                                       //set closest_hit to largest value at first.
     
     
     for(unsigned i = 0; i < objects.size(); ++i){                            //loop for each object
         std::cout<<"Closest_Intersection for called!!!!!!" <<std::endl;
 
-        temp = objects.at(i)->Intersection(ray, -1);
-        if(temp.dist < closest_hit.dist && temp.dist > small_t){        //if intersect & temp.dist < small_t
+        temp = objects.at(i)->Intersection(ray, 0);
+        if(temp.dist < min_t && temp.dist > small_t){        //if intersect & temp.dist < small_t
             closest_hit = temp;
+            min_t = closest_hit.dist;
             /*
             closest_hit.dist = temp.dist;
             closest_hit.object = temp.object;
