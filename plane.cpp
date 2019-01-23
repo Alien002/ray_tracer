@@ -8,15 +8,10 @@
 // to record a hit with t=0 as the first entry in hits.
 Hit Plane::Intersection(const Ray& ray, int part) const
 {
-    //TODO;
-    //int t = part;
-    
-    //x1, normal
+
     
     std::cout<<"plane intersect called!!!!!!" <<std::endl;
 
-    
-    Hit hit;
     vec3 vec = this -> x1 - ray.endpoint;            //Q-E
     vec3 u = ray.direction;
     
@@ -24,7 +19,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     double t = dot(vec,this -> normal)/ dot(u,this -> normal);
     
     
-    if(dot(vec,this -> normal) != 0){
+    if(dot(u,this -> normal) != 0){
         if (t > 0){
             return {this, t, part};
         }
