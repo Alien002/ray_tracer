@@ -17,7 +17,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     
     
     double a = dot(u,u);                                  //a = (E - C)(E - C)
-    double b = 2 * dot(vec, u);                           //b = 2(E - C)u
+    double b = dot(u, vec);                           //b = 2(E - C)u
     double c = dot(vec,vec) - pow(this -> radius,2);       //c = (X - C)(X - C) - r^2
     
     
@@ -30,19 +30,9 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         t2 = (-b - sqrt(det)) / (2*a);
         
         if(t1 >= small_t && t1 < t2){                                  //t1 >= small_t registered as hit
-            /*
-            hit.dist = t1;
-            hit.object = this;
-            hit.part = part;
-            */
             return{this, t1, part};
         }
         else if(t2 >= small_t && t2 < t1){//t2 registered as hit
-            /*
-            hit.dist = t2;
-            hit.object = this;
-            hit.part = part;
-            */
             return{this, t2, part};
         }
         else{
@@ -64,12 +54,6 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         }
     }
     else{       //det < 0
-        /*
-        hit.dist = 0;
-        hit.object = nullptr;
-        hit.part = 0;
-        */
-        //do nothing, no hit
     }
     
     return {nullptr, 0, part};
