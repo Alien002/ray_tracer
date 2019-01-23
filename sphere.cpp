@@ -8,7 +8,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     
     //int t = part;
     
-    std::cout<<"Sphere intersect called!!!!!!" <<std::endl;
+    //std::cout<<"Sphere intersect called!!!!!!" <<std::endl;
 
     
     Hit hit;

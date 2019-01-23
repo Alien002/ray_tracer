@@ -13,7 +13,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     
     //x1, normal
     
-    std::cout<<"plane intersect called!!!!!!" <<std::endl;
+    //std::cout<<"plane intersect called!!!!!!" <<std::endl;
 
     
     Hit hit;
@@ -38,7 +38,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 
 vec3 Plane::Normal(const vec3& point, int part) const
 {
-    std::cout<<"Normal if called!!!!!!" <<std::endl;
+    //std::cout<<"Normal if called!!!!!!" <<std::endl;
 
     return normal;
 }

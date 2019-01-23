@@ -78,9 +78,7 @@ void Render_World::Render()
 // cast ray and return the color of the closest intersected surface point,
 // or the background color if there is no object intersection
 vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
-{
-    std::cout<<"Cast_Ray called!!!!!!" <<std::endl;
-    
+{    
     vec3 color;
     
     vec3 background;                                    //placeholder vector
@@ -90,12 +88,6 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
     vec3 intersection_point = ray.Point(closest_intersect.dist);
     
-    
-    std::cout<<"Cast_Ray before normal called!!!!!!" <<std::endl;
-
-
-    std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
-
     
     if(closest_intersect.dist != 0){
         vec3 normal = closest_intersect.object -> Normal(intersection_point, 0);           //seg faults here sometimes
