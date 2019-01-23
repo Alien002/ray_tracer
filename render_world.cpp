@@ -97,7 +97,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
     
-    if(closest_intersect.dist > 0){
+    if(closest_intersect.object){
       //  std::cout<<"Cast_Ray if called!!!!!!" <<std::endl;
         std::cout<<"if before color called!!!!!!" <<std::endl;
 
