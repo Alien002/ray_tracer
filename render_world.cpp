@@ -52,7 +52,7 @@ void Render_World::Render_Pixel(const ivec2& pixel_index)  //
     Ray ray;
     
     ray.endpoint = camera.position;
-    ray.direction = (camera.World_Position(pixel_index) - ray.end_point).normalized();  //sets ray direction
+    ray.direction = (camera.World_Position(pixel_index) - ray.endpoint).normalized();  //sets ray direction
     
     vec3 color=Cast_Ray(ray,1);
     camera.Set_Pixel(pixel_index,Pixel_Color(color));
