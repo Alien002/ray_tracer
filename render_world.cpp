@@ -79,7 +79,12 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
     vec3 intersection_point = ray.Point(closest_intersect.dist);
     
+    
+    std::cout<<"Cast_Ray before normalcalled!!!!!!" <<std::endl;
+
     vec3 normal = closest_intersect.object -> Normal(intersection_point, -1);
+
+    std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
     
     if(closest_intersect.dist != 0){
