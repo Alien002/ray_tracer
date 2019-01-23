@@ -24,15 +24,16 @@ Hit Plane::Intersection(const Ray& ray, int part) const
     double t = dot(vec,this -> normal)/ dot(u,this -> normal);
     
     
-    if(dot(u,this -> normal) == 0){
-        hit.dist = -1;
-        hit.object = nullptr;
-        hit.part = 0;
+    if(dot(u,this -> normal) != 0){
+        if (t > 0){
+            return {this, t, part};
+        }
+        else{
+            return {nullptr, 0, part};
+        }
     }
     else {
-        hit.dist = t;
-        hit.object = this;
-        hit.part = part;
+        return {nullptr,0,part};
     }
     
     

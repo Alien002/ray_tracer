@@ -30,20 +30,22 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         t2 = (-b - sqrt(det)) / (2*a);
         
         if(t1 >= small_t && t1 < t2){                                  //t1 >= small_t registered as hit
+            /*
             hit.dist = t1;
             hit.object = this;
             hit.part = part;
-
+            */
+            return{this, t1, part};
         }
-        else if(t2 >= small_t && t2 < t1){                             //t2 registered as hit
+        else if(t2 >= small_t && t2 < t1){//t2 registered as hit
+            /*
             hit.dist = t2;
             hit.object = this;
             hit.part = part;
+            */
+            return{this, t2, part};
         }
         else{
-            hit.dist = 0;
-            hit.object = nullptr;
-            hit.part = 0;
         }
     }
     else if(det == 0){
@@ -51,25 +53,26 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
         t2 = 0;
         
         if(t1 >= small_t){
+            /*
             hit.dist = t1;
             hit.object = this;
             hit.part = part;
+            */
+            return{this, t1, part};
         }
         else{
-            hit.dist = 0;
-            hit.object = nullptr;
-            hit.part = 0;
         }
     }
     else{       //det < 0
+        /*
         hit.dist = 0;
         hit.object = nullptr;
         hit.part = 0;
-
+        */
         //do nothing, no hit
     }
     
-    return hit;
+    return {nullptr, t1, part;
 }
 
 vec3 Sphere::Normal(const vec3& point, int part) const
