@@ -10,7 +10,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 {
 
     
-    std::cout<<"plane intersect called!!!!!!" <<std::endl;
+    //std::cout<<"plane intersect called!!!!!!" <<std::endl;
 
     vec3 vec = this -> x1 - ray.endpoint;            //Q-E
     vec3 u = ray.direction;
