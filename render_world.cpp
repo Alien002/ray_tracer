@@ -80,6 +80,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     vec3 color;
     
     vec3 background;                                    //placeholder vector
+    Ray temp;
     
     Hit closest_intersect = this -> Closest_Intersection(ray);
 
@@ -88,7 +89,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     
     std::cout<<"Cast_Ray before normal called!!!!!!" <<std::endl;
 
-    vec3 normal = closest_intersect.object -> Normal(intersection_point, -1);           //seg faults here
+    vec3 normal = closest_intersect.object -> Normal(intersection_point, closest_intersect.part);           //seg faults here sometimes
 
     std::cout<<"Cast_Ray after normal called!!!!!!" <<std::endl;
 
@@ -107,7 +108,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
         //std::cout<<"Cast_Ray else called!!!!!!" <<std::endl;
         std::cout<<"else before color called!!!!!!" <<std::endl;
 
-        this -> background_shader -> Shade_Surface(ray, background, background, recursion_depth);
+        this -> background_shader -> Shade_Surface(temp, background, closest_intersect.object-> Normal(background, closest_intersect.object -> number_parts), recursion_depth);
         
         std::cout<<"else after color called!!!!!!" <<std::endl;
 
