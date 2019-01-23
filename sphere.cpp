@@ -17,7 +17,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     
     
     double a = dot(u,u);                                  //a = (E - C)(E - C)
-    double b = dot(u, vec);                           //b = 2(E - C)u
+    double b = 2 * dot(u, vec);                           //b = 2(E - C)u
     double c = dot(vec,vec) - pow(this -> radius,2);       //c = (X - C)(X - C) - r^2
     
     
