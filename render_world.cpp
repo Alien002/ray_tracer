@@ -24,8 +24,8 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 {
     //TODO;
     //std::cout<<"Closest_Intersection called!!!!!!" <<std::endl;
-/*
-    int min_t = std::numeric_limits<int>::max();
+
+    double min_t = std::numeric_limits<int>::max();
     
     Hit closest_hit = {nullptr, 0, 0};
     //Hit temp;
@@ -43,22 +43,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
         }
     }
     return closest_hit;
- */
-    
-    double min_t = std::numeric_limits<int>::max();
-    Hit result;
-    result = {nullptr, 0, 0};
-    for(unsigned int i = 0; i < this->objects.size(); i++)
-    {
-        Hit temp = this->objects.at(i)->Intersection(ray, -1);
-        if (temp.dist > small_t && temp.dist < min_t && temp.object)
-        {
-            min_t = temp.dist;
-            result = temp;
-        }
-    }
-    
-    return result;
+ 
 }
 
 // set up the initial view ray and call
