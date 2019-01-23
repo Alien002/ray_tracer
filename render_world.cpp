@@ -76,11 +76,10 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     vec3 background;                                    //placeholder vector
     
     Hit closest_intersect = Closest_Intersection(ray);
-    vec3 normal = closest_intersect.object.normal;
 
-    
-    
     vec3 intersection_point = ray.Point(closest_intersect.dist);
+    
+    vec3 normal = closest_intersect.object -> Normal(intersection_point, -1);
 
     
     if(closest_intersect.dist != 0){
