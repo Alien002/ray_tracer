@@ -76,8 +76,8 @@ vec3 Sphere::Normal(const vec3& point, int part) const
 {   std::cout<<"sphere normal called!!!!!!" <<std::endl;
 
     vec3 normal;
-    TODO; // compute the normal direction
-    
+    //TODO; // compute the normal direction
+    normal = (point - center) / radius;
     
     return normal;
 }
