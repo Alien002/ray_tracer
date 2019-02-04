@@ -30,21 +30,33 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     
     for(unsigned i = 0; i < world.lights.size(); ++i){
         current = world.lights.at(i);
-        double dotA = dot(normal.normalized(), -(intersection_point - (current -> position)).normalized());
-        double b = 0.0;
-        if(dotA < b){           //max finder function
-            b = 0.0;
+        
+        double diffMax = std::max(dot(normal.normalized(), -(intersection_point - (current -> position)).normalized()),0.0);
+        /*
+        double d = 0.0;
+        if(dotA < d){           //max finder function
+            d = 0.0;
         }
         else{
-            b = dotA;
+            d = dotA;
         }
+        */
+        
+        vec3 L = current -> position - intersection_point;
+        
+        double specMax = pow(std::max(dot((intersection_point - ray.endpoint).normalized(), (L - 2 * dot(L,normal) * normal).normalized() ), 0.0), specular_power);
+        
+        
+        
+        
+        
         
         //shadowray.endpoint = intersection_point;
         //shadowray.direction = (current -> position-intersection_point).normalized();
         
         //if(world.Closest_Intersection(shadowray).object == nullptr || (current -> position - intersection_point < world.Closest_Intersection(shadowray).dist)){
-        Id = color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * b;
-            //Is = color_specular *
+        Id = color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * diffMax;
+        Is = color_specular * current -> Emitted_Light(intersection_point - current -> position) * specMax//RsLsmax(v.r,0)^a
         //}
     }
     
