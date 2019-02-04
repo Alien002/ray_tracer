@@ -36,7 +36,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
         
         //if(world.Closest_Intersection(shadowray).object == nullptr || (current -> position - intersection_point < world.Closest_Intersection(shadowray).dist)){
         Id = color_diffuse * current -> Emitted_Light(current -> position) * std::max(
-                    dot(normal.normalized(), -(intersection_point - current -> Emitted_Light(current -> position)).normalized()),0.0);
+                    dot(normal.normalized(), -(intersection_point - (current -> position)).normalized()),0.0);
             //Is = color_specular *
         //}
     }
