@@ -20,7 +20,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     //I = Ia + Id + Is
     //  = (Ra * La) + (Rd * Ld * max(n . l, 0)) + (Rs * Ls * max(v . r, 0)^a)
     //Emitted_Light(const vec3& vector_to_light)
-    vec3 Ia = color_ambient * world.ambient_intensity * world.ambient_color;
+    vec3 Ia = Ia + color_ambient * world.ambient_intensity * world.ambient_color;
     vec3 Id;
     vec3 Is;
     
@@ -55,8 +55,8 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
         //shadowray.direction = (current -> position-intersection_point).normalized();
         
         //if(world.Closest_Intersection(shadowray).object == nullptr || (current -> position - intersection_point < world.Closest_Intersection(shadowray).dist)){
-        Id = color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * diffMax;
-        Is = color_specular * current -> Emitted_Light(intersection_point - current -> position) * specMax;//RsLsmax(v.r,0)^a
+        Id = Id + color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * diffMax;
+        Is = Is + color_specular * current -> Emitted_Light(intersection_point - current -> position) * specMax;//RsLsmax(v.r,0)^a
         //}
     }
     
