@@ -31,11 +31,19 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     for(unsigned i = 0; i < world.lights.size(); ++i){
         current = world.lights.at(i);
         double dotA = dot(normal.normalized(), -(intersection_point - (current -> position)).normalized());
+        double b = 0.0;
+        if(dotA < b){           //max finder function
+            b = 0.0;
+        }
+        else{
+            b = dotA;
+        }
+        
         //shadowray.endpoint = intersection_point;
         //shadowray.direction = (current -> position-intersection_point).normalized();
         
         //if(world.Closest_Intersection(shadowray).object == nullptr || (current -> position - intersection_point < world.Closest_Intersection(shadowray).dist)){
-        Id = color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * (dotA < 0.0) ? 0.0 : dotA;
+        Id = color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * b;
             //Is = color_specular *
         //}
     }
