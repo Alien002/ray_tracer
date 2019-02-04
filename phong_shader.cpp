@@ -18,15 +18,37 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     double specular_power)
     /*/
     //I = Ia + Id + Is
-    //  = Ra * La + Rd * Ld * max(n . 1, 0) + Rs * Ls * max(v . r, 0)^a
+    //  = (Ra * La) + (Rd * Ld * max(n . l, 0)) + (Rs * Ls * max(v . r, 0)^a)
     //Emitted_Light(const vec3& vector_to_light)
     vec3 Ia = color_ambient * world.ambient_intensity * world.ambient_color;
-    //vec3 Id = {0,0,0};
-    //vec3 Is = {0,0,0};
+    vec3 Id;
+    vec3 Is;
+    
+    Ray shadowray;
+    Light *current;
+    
+    
+    for(unsigned i = 0; i < world.lights.size(); ++i){
+        current = world.lights.at(i);
+        
+        shadowray.endpoint = intersection_point;
+        shadowray.direction = (current -> position-intersection_point).normalized();
+        
+        if(world.Closest_Intersection(shadowray).object == nullptr || (current - intersection_point < world.Closest_Intersection(shadowray).dist){
+            Id = color_diffuse * light.Emitted_Light(current -> position) * max(dot(normal, intersection_point - light.Emitted_Light(current -> position)),0);
+            //Is = color_specular *
+        }
+        
+        
+        
+        
+    }
+    
+    
     
     
     //color = /Ra/ * Emitted_Light(this -> color_ambient) + /Rd/ * Emitted_Light(this -> color_diffuse) * max() + /Rs/ * Emitted_Light(this ->color_specular)
-    color = Ia;// + Id + Is;
+    color = Ia + Id;// + Is;
     
     return color;
 }
