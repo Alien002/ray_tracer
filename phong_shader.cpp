@@ -62,7 +62,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     
     
     //color = /Ra/ * Emitted_Light(this -> color_ambient) + /Rd/ * Emitted_Light(this -> color_diffuse) * max() + /Rs/ * Emitted_Light(this ->color_specular)
-    color = Ia + Id;// + Is;
+    color = Ia + Id + Is;
     
     return color;
 }
