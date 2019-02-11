@@ -86,28 +86,20 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     vec3 intersection_point;
     
     
-    if(closest_intersect.dist != 0){
+    if(closest_intersect.object != nullptr && recursion_depth <= recursion_depth_limit){
         intersection_point = ray.Point(closest_intersect.dist);
-        normal = closest_intersect.object -> Normal(intersection_point, -1);           //seg faults here sometimes
-
-      //  std::cout<<"Cast_Ray if called!!!!!!" <<std::endl;
-        //std::cout<<"if before color called!!!!!!" <<std::endl;
+        normal = closest_intersect.object -> Normal(intersection_point, closest_intersecti.part);
 
         color = closest_intersect.object -> material_shader -> Shade_Surface(ray, intersection_point, normal, recursion_depth);
         
-        //std::cout<<"if after color called!!!!!!" <<std::endl;
 
     }// determine the color here
     else{
         //background shader
-        //std::cout<<"else before color called!!!!!!" <<std::endl;
 
         color = background_shader -> Shade_Surface(ray, ray.direction, ray.direction, recursion_depth);
         
-        //std::cout<<"else after color called!!!!!!" <<std::endl;
 
-        //color = closest_intersect.object -> material_shader -> background_shader;
-        //background shader???
     }
     return color;
 }
