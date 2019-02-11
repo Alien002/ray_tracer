@@ -30,7 +30,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     vec3 reflectRay;
     
     Light* current;
-    Ray shadowRay_Ray;
+    Ray shadowRay_ray;
     
     Hit intersect{};
     
