@@ -20,16 +20,33 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     //I = Ia + Id + Is
     //  = (Ra * La) + (Rd * Ld * max(n . l, 0)) + (Rs * Ls * max(v . r, 0)^a)
     //Emitted_Light(const vec3& vector_to_light)
+    
     vec3 Ia = Ia + color_ambient * world.ambient_intensity * world.ambient_color;
     vec3 Id;
     vec3 Is;
     
-    Ray shadowray;
-    Light *current;
+    vec3 shadowRay;
+    vec3 viewRay;
+    vec3 reflectRay;
+    
+    Light* current;
+    Ray shadowRay_Ray;
+    
+    Hit intersect{};
     
     
     for(unsigned i = 0; i < world.lights.size(); ++i){
         current = world.lights.at(i);
+        
+        shadowRay = current -> position - intersection_point;
+        shadowRay_ray.endpoint = intersection_point;
+        shadowRay_ray.direction = (current -> position - intersection_point).normalized();
+       
+        viewRay = ray.endpoint - intersection_point;
+        
+        reflectRay = 2 * dot(shadowRay, normal) * normal - shadowRay;
+        
+        intersect = world.Closest_Intersection(shadowRay_ray);
         
         double diffMax = std::max(dot(normal.normalized(), -(intersection_point - (current -> position)).normalized()),0.0);
         
@@ -41,9 +58,11 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
         //shadowray.direction = (current -> position-intersection_point).normalized();
         
         //if(world.Closest_Intersection(shadowray).object == nullptr || (current -> position - intersection_point < world.Closest_Intersection(shadowray).dist)){
-        Id = Id + color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * diffMax;
-        Is = Is + color_specular * current -> Emitted_Light(intersection_point - current -> position) * specMax;//RsLsmax(v.r,0)^a
-        //}
+        if(!world.enable_shadows || (world.enable_shadows && (!intersect.object || intersect.dist >= shadowRay.magnitude()))){
+            
+            Id = Id + color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * diffMax;
+            Is = Is + color_specular * current -> Emitted_Light(intersection_point - current -> position) * specMax;//RsLsmax(v.r,0)^a
+        }
     }
     
     
