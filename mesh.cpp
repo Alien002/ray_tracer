@@ -47,7 +47,7 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
     TODO;
     double dist;
     
-    unsigned i = 0;
+    int i = 0;
     
     if(part >= 0){
         if(Intersect_Triangle(ray, part, dist)){
@@ -56,7 +56,7 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
     }
     
     else{
-        while(i < traingles.size() && !Intersect_Triangle(ray, i, dist)){
+        while(i < triangles.size() && !Intersect_Triangle(ray, i, dist)){
             ++i;
         }
         
@@ -78,7 +78,7 @@ vec3 Mesh::Normal(const vec3& point, int part) const
     vec3 v2 = vertices.at(triangles[part][1]);
     vec3 v3 = vertices.at(triangles[part][2]);
 
-    return cross(v1 - v2, v2 - v3,).normalized();
+    return cross(v1 - v2, v2 - v3).normalized();
 }
 
 // This is a helper routine whose purpose is to simplify the implementation
