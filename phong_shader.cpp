@@ -58,6 +58,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
             Id = Id + color_diffuse * current -> Emitted_Light(intersection_point - current -> position) * diffMax;
             Is = Is + color_specular * current -> Emitted_Light(intersection_point - current -> position) * specMax;//RsLsmax(v.r,0)^a
         }
+        
     }
     
     return color = Ia + Id + Is;
