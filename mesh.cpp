@@ -119,7 +119,7 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
     double a = 1 - b - g;
     
     if (a >= -weight_tolerance && b >= -weight_tolerance && g >= -weight_tolerance) {
-        dist = tri_intersection.dist;
+        dist = tri_intersect.dist;
         return true;
     }
     
