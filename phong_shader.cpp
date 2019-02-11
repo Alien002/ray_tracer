@@ -32,7 +32,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     Light* current;
     Ray shadowRay_ray;
     
-    Hit intersect{};
+    Hit intersect;
     
     
     for(unsigned i = 0; i < world.lights.size(); ++i){
