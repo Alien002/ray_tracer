@@ -56,11 +56,11 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
     }
     
     else{
-        while(i < triangles.size() && !Intersect_Triangle(ray, i, dist)){
+        while(i < (int)triangles.size() && !Intersect_Triangle(ray, i, dist)){
             ++i;
         }
         
-        if(i != triangles.size()){
+        if(i != (int)triangles.size()){
             return {this, dist, i};
         }
     }
