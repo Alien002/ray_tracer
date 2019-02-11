@@ -108,7 +108,7 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
         return false;
     }
     
-    vec3 p = ray.Point(tri_intersection.dist);
+    vec3 p = ray.Point(tri_intersect.dist);
     vec3 v = v2 - v1;
     vec3 w = v3 - v1;
     vec3 y = p - v1;
