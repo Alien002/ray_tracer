@@ -43,7 +43,28 @@ void Mesh::Read_Obj(const char* file)
 Hit Mesh::Intersection(const Ray& ray, int part) const
 {
     TODO;
-    return {};
+    double dist;
+    
+    unsigned i = 0;
+    
+    if(part >= 0){
+        if(Intersect_Triangle(ray, part, dist)){
+            return{this, dist, part};
+        }
+    }
+    
+    else{
+        while(i < traingles.size() && !Intersect_Triangle(ray, i, dist)){
+            ++i;
+        }
+        
+        if(i != triangles.size()){
+            return {this, dist, i};
+        }
+    }
+    
+    
+    return {0,0,0};
 }
 
 // Compute the normal direction for the triangle with index part.
@@ -51,7 +72,11 @@ vec3 Mesh::Normal(const vec3& point, int part) const
 {
     assert(part>=0);
     TODO;
-    return vec3();
+    vec3 v1 = vertices.at(triangles[part][0]);
+    vec3 v2 = vertices.at(triangles[part][1]);
+    vec3 v3 = vertices.at(triangles[part][2]);
+
+    return cross(v1 - v2, v2 - v3,).normalized();
 }
 
 // This is a helper routine whose purpose is to simplify the implementation
@@ -69,6 +94,32 @@ vec3 Mesh::Normal(const vec3& point, int part) const
 bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 {
     TODO;
+    vec3 v1 = vertices.at(triangles[tri][0]);
+    vec3 v2 = vertices.at(triangles[tri][1]);
+    vec3 v3 = vertices.at(triangles[tri][2]);
+    
+    Plane tri_plane(v1, Normal(v1, tri));
+    Hit tri_intersect = tri_plane.Intersection(ray, tri);
+    if (!tri_intersect.object || tri_intersect.dist <= small_t) {
+        return false;
+    }
+    
+    vec3 p = ray.Point(tri_intersection.dist);
+    vec3 v = v2 - v1;
+    vec3 w = v3 - v1;
+    vec3 y = p - v1;
+    vec3 u = ray.direction;
+    
+    double g = dot(cross(u, v), y)/dot(cross(u, v), w);
+    double b = dot(cross(w, u), y)/dot(cross(w, u), v);
+    double a = 1 - b - g;
+    
+    if (a >= -weight_tolerance && b >= -weight_tolerance && g >= -weight_tolerance) {
+        dist = tri_intersection.dist;
+        return true;
+    }
+    
+    return false;
     return false;
 }
 
@@ -78,5 +129,8 @@ Box Mesh::Bounding_Box(int part) const
 {
     Box b;
     TODO;
+    
+    
+    
     return b;
 }

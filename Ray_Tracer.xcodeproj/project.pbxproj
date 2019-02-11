@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		40198A22220A022300BBD3DE /* cow.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = cow.scn; sourceTree = "<group>"; };
 		407B0FF921EE428B006516E8 /* 00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 00.png; sourceTree = "<group>"; };
 		407B0FFA21EE428B006516E8 /* 00.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 00.txt; sourceTree = "<group>"; };
 		407B0FFB21EE428B006516E8 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 				407B103A21EE428B006516E8 /* camera.h */,
 				407B103B21EE428B006516E8 /* CMakeLists.txt */,
 				407B103C21EE428B006516E8 /* cow.obj */,
+				40198A22220A022300BBD3DE /* cow.scn */,
 				407B103D21EE428B006516E8 /* direction_light.h */,
 				407B103E21EE428B006516E8 /* dump_png.cpp */,
 				407B103F21EE428B006516E8 /* flat_shader.cpp */,
