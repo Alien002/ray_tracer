@@ -34,7 +34,6 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
     
     Hit intersect;
     
-    
     for(unsigned i = 0; i < world.lights.size(); ++i){
         current = world.lights.at(i);
         
@@ -65,9 +64,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
         }
     }
     
+    //color ;
     
-    //color = /Ra/ * Emitted_Light(this -> color_ambient) + /Rd/ * Emitted_Light(this -> color_diffuse) * max() + /Rs/ * Emitted_Light(this ->color_specular)
-    color = Ia + Id + Is;
-    
-    return color;
+    return color = Ia + Id + Is;
 }
