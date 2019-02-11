@@ -44,7 +44,7 @@ void Mesh::Read_Obj(const char* file)
 // Check for an intersection against the ray.  See the base class for details.
 Hit Mesh::Intersection(const Ray& ray, int part) const
 {
-    TODO;
+    //TODO;
     double dist;
     
     int i = 0;
@@ -73,7 +73,7 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
 vec3 Mesh::Normal(const vec3& point, int part) const
 {
     assert(part>=0);
-    TODO;
+    //TODO;
     vec3 v1 = vertices.at(triangles[part][0]);
     vec3 v2 = vertices.at(triangles[part][1]);
     vec3 v3 = vertices.at(triangles[part][2]);
@@ -95,7 +95,7 @@ vec3 Mesh::Normal(const vec3& point, int part) const
 // two triangles.
 bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 {
-    TODO;
+    //TODO;
     vec3 v1 = vertices.at(triangles[tri][0]);
     vec3 v2 = vertices.at(triangles[tri][1]);
     vec3 v3 = vertices.at(triangles[tri][2]);
